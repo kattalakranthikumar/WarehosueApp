@@ -1,0 +1,139 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <title>Purchase Order</title>
+    
+</head>
+
+<body>
+    <div class="container">
+    <div th:insert="fragments/commonui::userhead"></div>
+    <div th:insert="fragments/commonui::usermenu"></div>
+        <div class="card">
+            <div class="card-header text-center bg-primary">
+                <h3>Purchase Order</h3>
+            </div>
+            <div class="card-body">
+            <form th:action="@{/po/save}" method="POST" th:object="${purchaseOrder}">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="purchaseOrderCode">Order Code</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" th:field==*{purchaseOrderCode} class="form-control">
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseOrderCodeError"></span>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-3">
+                        <label for="shipmentType">Shipment Code</label>
+                    </div>
+                    <div class="col-4">
+                    <select th:field="*{shipmentType.id}" class="form-control">
+                    <option value="">--select--</option>
+                    <option th:each="ob:${sts}" 
+                    th:text="${ob.value}" 
+                    th:value="${ob.key}"/>
+                    
+                    </select>
+                    
+
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseOrderCodeError"></span>
+                    </div>
+                </div>
+                
+                  <div class="row">
+                    <div class="col-3">
+                        <label for="whUserType">WhUserType Code</label>
+                    </div>
+                    <div class="col-4">
+                    <select th:field="*{whUserType.id}" class="form-control">
+                    <option value="">--select--</option>
+                    <option th:each="ob:${whuts}" th:text="${ob.value}" th:value="${ob.key}"/>
+                    
+                    </select>
+                    
+
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseOrderCodeError"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="">Reference Number</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" th:field="*{purchaseReferenceNumber}" class="form-control">
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseReferenceNumberError"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="purchaseQualityCheck">Quality Check</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" name="purchaseQualityCheck" />Required
+                        <input type="radio" name="purchaseQualityCheck" />Not Required
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseQualityCheckError"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-2">
+                            <label>Default Status</label>
+                        </div>
+                        <div class="col-5">
+                           <input type="text"  th:field="*{purchaseDefaultStatus}" class="form-control" readOnly/>
+                        </div>
+                        <div class="col-5">
+                            <span id="purchaseDefaultStatusError"></span>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="purchaseDesc">Description</label>
+                    </div>
+                    <div class="col-4">
+                        <textarea th:field="*{purchaseDesc}" class="form-control"></textarea>
+                    </div>
+                    <div class="col-5">
+                        <span id="purchaseDescError"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" id="" name="" class="btn btn-success">
+                    </div>
+                    <div class="col-5">
+                       
+                    </div>
+                </div>
+                 </form>
+                 <span th:text="${message}"></span>
+               
+             </div>
+                
+                </div>  
+        </div>
+      
+   
+
+</body>
+
+</html>

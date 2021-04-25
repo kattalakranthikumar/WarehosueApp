@@ -1,0 +1,43 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+
+    </head>
+    <body>
+    <div class="container">
+     <div th:insert="fragments/commonui::userhead"></div>
+ <div th:insert="fragments/commonui::usermenu"></div>
+    <a th:href="@{/st/excel}" class="btn btn-success">Excel Export</a>
+    <a th:href="@{/st/pdfexport}" class="btn btn-success">pdf</a>
+        <table border="1">
+            <tr>
+                <th>shipment id</th>
+                <th>shipment mode</th>
+                <th>shipment code</th>
+                <th>shipment enable</th>
+                <th>shipment grade</th>
+                <th>shipment desc</th>
+                <th>shipment operations</th>
+                
+            </tr>
+            <tr th:each="ob:${List}">
+            <td th:text="${ob.id}"></td>
+            <td th:text="${ob.shipmentMode}"></td>
+            <td th:text="${ob.shipmentCode}"></td>
+            <td th:text="${ob.enableShipment}"></td>
+            <td th:text="${ob.shipmentGrade}"></td>
+            <td th:text="${ob.shipmentDesc}"></td>
+            <td>
+                <div th:insert="fragments/commonui::deleteicon"></div>
+                |
+              <a th:href="@{/st/edit(id=${ob.id})}"> <div th:insert="fragments/commonui::editicon"></div></a>
+                |
+                <a th:href="@{/st/excelexport(id=${ob.id})}">Excel Export</a>
+            </td>
+            
+        </tr>
+        
+        </table>
+        <span th:text="${message}"></span>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<meta charset="ISO-8859-1">
+<title>UOM Registration page</title>
+</head>
+<body>
+	<form th:action="@{/uom/update}" method="POST" th:object="${uom}">
+	Uom id:<input type="text" th:field="*{id}"/ readOnly>
+		UOM Type: <select th:field="*{uomType}">
+			<option value="">select</option>
+			<option value="Packing">Packing</option>
+			<option value="No Packing">No Packing</option>
+			<option value="NA">NA</option>
+		</select> UOM Model: <input type="text" th:field="*{uomModel}" /> UOM Desc:
+		<textarea th:field="*{uomDesc}"></textarea>
+		<input type="submit" />
+	</form>
+	<span th:text="${message}"></span>
+</body>
+</html>

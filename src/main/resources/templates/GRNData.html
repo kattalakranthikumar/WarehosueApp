@@ -1,0 +1,33 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    
+    </head>
+    <div class="container">
+    <body>
+        <div class="card">
+
+        <table border="1">
+            <div class="card-header bg-info">
+            <tr>
+                <th>ID</th>
+                <th>GRN Code</th>
+                <th>GRN Type</th>
+                <th>Purchase Order</th>
+
+            </tr>
+        </div>
+        <div class="card-body">
+            <tr th:each="ob:${List}">
+                <td th:text="${ob.id}"></td>
+                <td th:text="${ob.grnCode}"></td>
+                <td th:text="${ob.grnType}"></td>
+                <td th:text="${ob.purchaseOrder.purchaseOrderCode}"></td>
+            </tr>
+        </div>
+        </table>
+    </div>
+    </body>
+</div>
+</html>

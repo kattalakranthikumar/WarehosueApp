@@ -1,0 +1,101 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+	<div class="card">
+		<div class="card-header">Order Method Register</div>
+
+
+		<div class="card-body">
+			<form th:action="@{/om/update}" method="POST" th:object="${ordermethod}">
+
+
+
+				<div class="row">
+					<div class="col-3">
+						<label for="">Order Mode</label>
+					</div>
+					<div class="col-4">
+						<input type="radio" th:field="*{orderMode}" value="sale" />sale 
+						<input type="radio" th:field="*{orderMode}" value="Purchase" />Purchase
+					</div>
+					<div class="col-5">
+						<span id="orderCode_Error"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<label for="">Order Code</label>
+					</div>
+					<div class="col-4">
+						<input type="text" th:field="*{orderCode}">
+					</div>
+					<div class="col-5">
+						<span id="orderCode_Error"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-3">
+						<label for="">Order Type</label>
+					</div>
+					<div class="col-4">
+						<select th:field="*{orderType">
+							<option value="">-Select-</option>
+							<option value="FIFO">FIFO</option>
+							<option value="LIFO">LIFO</option>
+							<option value="FCFO">FCFO</option>
+							<option value="FEFO">FEFO</option>
+						</select>
+					</div>
+					<div class="col-5">
+						<span id="orderType_Error"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<label for="">Order Accept</label>
+					</div>
+					<div class="col-4">
+						<input type="checkbox" th:field="*{orderAcpt}" value="Multi-Model" />Multi-Model
+						<input type="checkbox" th:field="*{orderAcpt}" value="Accept-Return" />Accept-Return
+					</div>
+					<div class="col-5">
+						<span id="orderAcpt_Error"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<label for="">Order Description</label>
+					</div>
+					<div class="col-4">
+						<textarea th:field="*{orderDesc}"></textarea>
+					</div>
+					<div class="col-5">
+						<span id="orderDesc_Error"></span>
+					</div>
+				</div>
+				<!--card end-->
+				<input type="submit" />
+			</form>
+
+
+		</div>
+
+
+		<div class="card-footer">
+			<span th:text="${message}"></span>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

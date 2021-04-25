@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+<div th:insert="fragments/commonui::userhead"></div>
+<div th:insert="fragments/commonui::usermenu"></div>
+<title>Login Page</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="#" method="post">
+    
+<h3>Login Page</h3>
+
+<div class="row">
+<div class="col-3">
+    <label for="">Email</label>
+</div>
+<div class="col-4 ">
+    <input type="email" name="" id="">
+</div>
+<div class="col-5">
+    <span></span>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <label for="">password</label>
+    </div>
+    <div class="col-4 ">
+        <input type="password" name="" id="">
+    </div>
+    <div class="col-5">
+        <span></span>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+           
+        </div>
+        <div class="col-4 ">
+            <input type="submit" value="Submit">
+        </div>
+        <div class="col-5">
+            <span></span>
+        </div>
+         
+        </div>
+  
+    </form>
+
+<a th:href="@{user/forgotpassword}" class="btn btn-info">Forgot password</a>
+</div>
+</body>
+</html>

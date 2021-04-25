@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+
+<title>UOM Registration page</title>
+</head>
+
+<body>
+
+	
+		<div class="container">
+			
+			<form th:action="@{/uom/save}" id="UomForm" method="POST">
+				<div class="card">
+					<div class="card-header bg-primary">
+						<h1 align="center">UOM Registration</h1>
+					</div>
+
+<div class="card-body">
+					<div class="row">
+						<div class="col-3">
+							<label for="uomType">UOM Type:</label>
+						</div>
+						<div class="col-4">
+							<select name="uomType" id="uomType" class="form-control ">
+								<option value=""><b>Select</b></option>
+								<option value="Packing">Packing</option>
+								<option value="No Packing">No Packing</option>
+								<option value="NA">NA</option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="uomTypeError"></span>
+						</div>
+</div>
+					<div class="row">
+						<div class="col-3">
+							<label for=""> UOM Model: </label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="uomModel" id="uomModel" />
+						</div>
+						<div class="col-5">
+							<span id="uomModelError"></span>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-3">
+							<label for="">UOM Desc:</label>
+						</div>
+						<div class="col-4">
+							<textarea name="uomDesc" id="uomDesc"></textarea>
+						</div>
+						<div class="col-5">
+							<span id="uomDescError"></span>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="card-footer bg-info">
+
+					<input type="submit" class="btn btn-success center" />
+				</div>
+		</div>
+		</form>
+	</div>
+	<span th:text="${message}"></span>
+
+	<script>
+        $(document).ready(function () {
+            //1. Hide error section.
+            $("#uomTypeError").hide();
+            $("#uomModelError").hide();
+            $("#uomDescError").hide();
+
+            //2.Declare one error variable.
+            var uomTypeError = false;
+            var uomModelError = false;
+            var uomDescError = false;
+
+            //3.Declare validate function.
+
+            function validate_uomType() {
+                var val = $("#uomType").val();
+                if (val == '') {
+                    $("#uomTypeError").show();
+                    $("#uomTypeError").html("<--Select <b>Type</b>");
+                    $("#uomTypeError").css('color', 'red');
+                    uomTypeError = false;
+                }
+                else {
+                    uomTypeError = true;
+                    $("#uomTypeError").hide();
+                }
+                return uomTypeError;
+            }
+            function validate_uomModel(){
+                var val =$("#uomModel").val();
+                if(val==''){
+                    $("#uomModelError").show();
+                    $("#uomModelError").html("<--Enter <b>Model</b>");
+                    $("#uomModelError").css('color', 'red');
+                     uomModelError = false;
+
+                }else{
+                   $.ajax({
+                    url:'validateuomcode',
+                    data:{"code":val},
+                    success:function(respTxt){
+                        if(respTxt!=""){
+                             $("#uomModelError").show();
+                             $("#uomModelError").html(respTxt);
+                             $("#uomDescError").css('color', 'red');
+                              uomModelError = false;
+                        }else{
+                            $("#uomModelError").hide();
+                            uomModelError = true;
+                        }
+                    }
+
+                   });                  
+
+                
+                }
+            }
+
+
+            function validate_uomDesc() {
+                var val = $("#uomDesc").val();
+                if (val == '') {
+                    $("#uomDescError").show();
+                    $("#uomDescError").html("<--Enter <b>note</b>");
+                    $("#uomDescError").css('color', 'red');
+                    uomDescError = false;
+                }
+                else {
+
+                    uomDescError = true;
+                    $("#uomDescError").hide();
+
+                }
+                return uomDescError;
+            }
+
+            //4. Link with action event.
+            $("#uomType").change(function () {
+
+                validate_uomType();
+            });
+
+            $("#uomModel").keyup(function () {
+                validate_uomModel();
+            });
+
+            $("#uomDesc").keyup(function () {
+                validate_uomDesc();
+            });
+
+            //5. Onclick submit.
+            $("#UomForm").submit(function () {
+                validate_uomType();
+                validate_uomModel();
+                validate_uomDesc();
+
+                if (uomTypeError && uomModelError && uomDescError)
+                    return true;
+                else
+                    return false;
+
+
+            });
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

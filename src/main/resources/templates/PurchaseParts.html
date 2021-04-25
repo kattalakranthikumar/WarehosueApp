@@ -1,0 +1,84 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<title>Purchase order Parts</title>
+
+</head>
+<body>
+	<div class="container">
+	
+	<div th:insert="fragments/commonui::userhead"></div>
+		<div th:insert="fragments/commonui::usermenu"></div>
+	<div class="card">
+	
+		<h2 class="text-center">Purchase Order Details</h2>
+		
+		<div class="card-header bg-primary">
+		<table>
+			<tr>
+				<th>OrderCode  :</th>
+				<th th:text="${po.purchaseOrderCode}" class="bg-success"></th>
+				<th>Order Status  :</th>
+				<th th:text="${po.purchaseDefaultStatus}" class="bg-success"></th>
+			</tr>
+		</table>
+		</div>
+		<hr>
+		<div th:if="${'OPEN'==po.purchaseDefaultStatus ||'Picking'==po.purchaseDefaultStatus}">
+		<form th:action="@{/po/addpart}" method="Post" th:object="${purchaseDtl}">
+		
+		
+		<input type="hidden"  th:field="*{purchaseOrder.id}">
+		
+		
+			Choose Parts: <select name="part.id">
+				<option value="">--Select--</option>
+				<option th:each="ob:${parts}" th:text="${ob.value}"
+					th:value="${ob.key}"></option>
+			</select> 
+			
+			Quantity :<input type="number" name="qty" min="1" > <!-- <a th:href=""  class="btn btn-warning">-</a>  --> 
+			
+			
+			<input type="submit" value="Add Part">
+			
+		</form>
+		</div>
+		<hr>
+		<table class="table">
+			<tr>
+				<th>sno</th>
+				<th>Item</th>
+				<th>Base Cost</th>
+				<th>Quantity</th>
+				<th></th>
+			</tr>
+			<tr  th:each="ob,i:${pdetails}"> <!-- here "i" defines metadata ie., data which is like datatype, lenght(data), count etc.. -->
+				<td th:text="${i.count}"></td>
+				<td th:text="${ob.part.partCode}"></td>
+				<td th:text="${ob.part.partCost}"></td>
+				<td th:text="${ob.qty}"  > </td>
+									<div th:if="${'Open'==po.purchaseDefaultStatus ||'Picking'==po.purchaseDefaultStatus}">
+				
+				 <span th:if="${ob.qty}>=2">
+				<td ><a th:href="@{/po/sub(poId=${ob.purchaseOrder.id},dtlId=${ob.id})}" class="btn btn-warning">-</a>  </td>
+				</span>
+				<td ><a th:href="@{/po/add(poId=${ob.purchaseOrder.id},dtlId=${ob.id})}" class="btn btn-info">+</a>  </td>
+				</div>
+				<td >
+				<div th:if="${'Open'==po.purchaseDefaultStatus ||'Picking'==po.purchaseDefaultStatus}">
+			<a th:href="@{/po/deletepdtl(poId=${ob.purchaseOrder.id},dtlId=${ob.id})}" class="btn btn-danger">REMOVE</a>
+			</div>
+				</td>
+				
+			
+			
+			
+		</table>
+					<div th:if="${'Open'==po.purchaseDefaultStatus ||'Picking'==po.purchaseDefaultStatus}">
+		<a th:href="@{/po/placeorder(poId=${po.id})}" class="btn btn-primary" >PLACE ORDER</a>
+			</div>
+			
+	</div>
+	</div>
+</body>
+</html>

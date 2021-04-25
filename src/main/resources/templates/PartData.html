@@ -1,0 +1,39 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+
+    </head>
+    <body>
+    <a th:href="@{/st/excel}" class="btn btn-success">Excel Export</a>
+    <a th:href="@{/st/pdfexport}" class="btn btn-success">pdf</a>
+        <table border="1">
+            <tr>
+                <th>Part id</th>
+                <th>Part code</th>
+                <th>Part Width</th>
+<!--                 <th>Part Length</th> -->
+<!--                 <th>Part Height</th> -->
+<!--                 <th>Part Cost</th> -->
+                <th>Part Currency</th>
+                <th>Part operations</th>
+                <th>Operations</th>
+                
+            </tr>
+            <tr th:each="ob:${List}">
+            <td th:text="${ob.id}"></td>
+             <td th:text="${ob.partCode}"></td>
+              <td th:text="${ob.partCost}"></td>
+               <td th:text="${ob.partCurrency}"></td>
+                <td>
+                <a th:href="@{/part/delete(id=${ob.id})}">Delete</a>
+                <a th:href="@{/part/edit(id=${ob.id})}">Edit</a>
+                
+                          
+                </td>
+                
+            </tr>
+            
+        
+        </table>
+        <span th:text="${message}"></span>
+    </body>
+</html>

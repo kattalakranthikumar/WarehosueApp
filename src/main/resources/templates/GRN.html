@@ -1,0 +1,91 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <title>GRN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h3 class="text-center">GOODS RECEIVE NOTE</h3>
+            </div>
+            <div class="card-body">
+
+                <form th:action="@{/grn/save}" method="Post">
+
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="grnCode">GRN CODE</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="grnCode" id="grnCode" class="form-control">
+                        </div>
+                        <div class="col-3">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="grnType">GRN TYPE</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="grnType" id="grnType" class="form-control">
+                        </div>
+                        <div class="col-3">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="">ORDER CODE</label>
+                        </div>
+                        <div class="col-3">
+                            <select name="purchaseOrder.id" id="" class="form-control">
+                                <option value="">--select--</option>
+                                <option th:each="ob:${po}"
+                                th:text="${ob.value}"
+                                th:value="${ob.key}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="grnDescription">Description</label>
+                        </div>
+                        <div class="col-3">
+                            <textarea name="grnDescription" id="grnDescription" class="form-control"></textarea>
+                        </div>
+                        <div class="col-3">
+                            <span></span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row ">
+                        <div class="col-4"></div>
+                        <div class="col-6">
+                            <input type="submit" value="Create GRN">
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="card-footer"></div>
+
+        </div>
+    </div>
+</body>
+
+</html>

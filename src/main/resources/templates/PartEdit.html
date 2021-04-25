@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+<title>part Type Edit Page</title>
+</head>
+<div th:insert="fragments/commonui::userhead"></div>
+
+<body>
+	<div class="container">
+		<form th:action="@{/part/update}" method="Post" th:object="${part}" >
+
+			<div class="card">
+				<div class="card-header bg-primary text-black text-center">
+					<h1>Part Type Registration</h1>
+				
+				</div>
+				<div class="card-body">:
+				<div th:insert="fragments/commonui::usermenu"></div>
+
+					<div class="row">
+						<div class="col-3">
+							<label for="partId"> part Id</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{id}" class="form-control" readonly />
+						</div>
+						<div class="col-5">
+							<span></span>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-3">
+							<label for="partCode"> part Code :</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:field="*{partCode}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="partCodeError"></span>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-3">
+							<label for="uom"> UOM Model</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{uom.id}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${uoms}" th:value="${ob.key}"
+									th:text="${ob.value}" />
+							</select>
+						</div>
+
+
+						<div class="col-5">
+							<span id="uomModelError"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-3">
+							<label for="omsale"> ORDER METHOD CODE SALE</label>
+						</div>
+						<div class="col-4">
+							<select th:field="*{om.id}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${omssale}" th:value="${ob.key}"
+									th:text="${ob.value}" />
+							</select>
+						</div>
+						<div class="col-5">
+								<span id="omModelError"></span>
+							</div>
+							</div>
+						
+
+						<div class="row">
+							<div class="col-3">
+								<label for="ompurchase"> ORDER METHOD CODE PURCHASE</label>
+							</div>
+							<div class="col-4">
+								<select th:field="*{om.id}" class="form-control">
+									<option value="">-SELECT-</option>
+									<option th:each="ob:${omspurchase}" th:value="${ob.key}"
+										th:text="${ob.value}" />
+								</select>
+							</div>
+							<div class="col-5">
+								<span id="omModelError"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-3">
+								<label> part Dimension </label>
+							</div>
+							<div class="col-4">
+								Wid: <input type="text" th:field="*{partWidth}"
+									class="form-control" /> 
+									Len: <input type="text" th:field="*{partLength}" class="form-control" />
+									 Ht: <input	type="text" th:field="*{partHeight}" class="form-control" />
+							</div>
+							<div class="col-5">
+								<span id="partDimensionError"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-3">
+								<label for="partCost"> Base Cost</label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{partCost}" class="form-control">
+							</div>
+							<div class="col-5">
+								<span id="partCostError"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-3">
+								<label for="partCurrency"> Base Currency</label>
+							</div>
+							<div class="col-4">
+								<select name="partCurrency" th:field="*{partCurrency}" class="form-control">
+									<option value="">--Select--</option>
+									<option value="INR">INR</option>
+									<option value="USD">USD</option>
+									<option value="AUS">AUS</option>
+									<option value="ERU">ERU</option>
+								</select>
+							</div>
+							<div class="col-5">
+								<span id="partCurrencyError"></span>
+							</div>
+						</div>
+
+						<div class="card-footer bg-info text-center">
+							<div class="row">
+								<div class="col-3"></div>
+								<div class="col-4">
+									<input type="submit" value="Update part" class="btn btn-submit" />
+								</div>
+								<div class="col-5"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</form>
+		
+	</div>
+
+
+
+</body>
+
+</html>
