@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.xml.bind.v2.TODO;
+
 import kranthi.shipment.constants.PurchaseOrderStatus;
 import kranthi.shipment.model.PurchaseDtl;
 import kranthi.shipment.model.PurchaseOrder;
@@ -199,6 +201,7 @@ public ModelAndView genInvoice(@RequestParam("poId") Integer orderId) {
 /*
  * To Print Invoice
  */
+//TODO
 public ModelAndView printInvoice(@RequestParam("poId") Integer orderId) {
 	ModelAndView m = new ModelAndView();
 	
